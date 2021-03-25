@@ -1,0 +1,43 @@
+{
+  "name": "graphql-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "nodemonConfig": {
+    "exec": "npm run dev",
+    "watch": [
+      "src/*"
+    ],
+    "ignore": [
+      "**/__tests__/**",
+      "*.test.js",
+      "*.spec.js"
+    ]
+  },
+  "scripts": {
+    "start": "babel-node src/index.js",
+    "dev": "npm-run-all build server",
+    "build": "npm-run-all clean transpile",
+    "clean": "rimraf dist-server",
+    "transpile": "babel ./src --out-dir dist-server",
+    "server": "NODE_ENV=development node ./dist-server/index.js",
+    "prod": "NODE_ENV=production npm-run-all build server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.13.10",
+    "@babel/core": "^7.13.10",
+    "@babel/preset-env": "^7.13.10",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "graphql-yoga": "^1.18.3",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "uuid": "^3.3.2"
+  }
+}
